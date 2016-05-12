@@ -113,9 +113,18 @@ h1 {
     display: none;
 }
 
-#homePage,
-#aboutPage{
+/*#homePage,
+#aboutPage,
+#companyDetailContent{
     padding-top:50px;
+}*/
+
+.ui-content {
+    padding-top: 50px;
+}
+
+.ui-content.ios {
+    padding-top: 70px;
 }
 
 #header{
@@ -126,6 +135,22 @@ h1 {
     top:0px;
     background: #1F87E0; /* Old browsers */
     text-shadow: none;
+    border: none;
+    z-index: 999;
+}
+#header.ios{
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    text-align: center;
+    padding-top: 20px;
+    top:0px;
+    background: #1F87E0; /* Old browsers */
+    text-shadow: none;
+    border: none;
+}
+#header.ios .menuIcon {
+    top:20px;
 }
 
 .mainTitle {
@@ -142,7 +167,8 @@ h1 {
     border-radius: 5px;
     font-weight: lighter;
     text-align: center;
-    margin: 30px 20px;
+    background: transparent;
+    margin: 30px 10px;
     padding: 14px 0px;
     cursor: pointer;
     color: #ffffff;
@@ -184,7 +210,8 @@ h1 {
     padding: 0;
 }
 
-#logo {
+#logo,
+#logo img {
     width: 100%;
     text-align: center;
 }
@@ -214,11 +241,13 @@ h1 {
     text-align: center;
 }
 .modal-dialog {
-    position:absolute;
-    top:30% !important;
+    position: absolute;
+    top: 30% !important;
     margin: auto 6%;
-    width:280px;
-    min-height: 30%;
+    left: 50%;
+    margin-left: -140px;
+    width: 280px;
+    min-height: 172px;
 }
 .modal-content {
     min-height:100%;
@@ -266,6 +295,7 @@ h1 {
 #sideMenu {
     height: 100%;
     width: 23em;
+    display: none;
 }
 
 .ui-panel-closed {
@@ -340,15 +370,16 @@ h1 {
     list-style: none;
     border: 1px solid #0087E2;
     border-radius: 7px 7px 7px 7px;
-    padding: 15px 63px 15px 10px;
+    padding: 0;
     margin: 10px;
-    min-height: 83px;
+    min-height: 75px;
     position: relative;
     -webkit-transition: background 0.3s linear;
     -moz-transition: background 0.3s linear;
     -ms-transition: background 0.3s linear;
     -o-transition: background 0.3s linear;
     transition: background 0.3s linear;
+    cursor: pointer;
 }
 
 .todoContent ul li.done {
@@ -397,10 +428,6 @@ h1 {
     padding-top: 10px;
 }
 
-.profileDiv{
-    padding: 10px;
-}
-
 .profileDiv .title {
     font-weight: bold;
     color: #0087E2;
@@ -414,7 +441,7 @@ h1 {
 }
 
 .circleBtn {
-    width: 64px;
+    width: 110px;
     text-align: center;
     font-weight: bold;
     margin: 10px auto 0px;
@@ -441,5 +468,136 @@ h1 {
     height: 100%;
     background: #FFFFFF;
     opacity: 0.5;
-    z-index: 9999;
+    z-index: 10;
 }
+
+.floatLeft {float: left;}
+.floatRight {float: right;}
+.legend{font-weight: bold;color: #0087E2;}
+.center{text-align: center;}
+.clearfix {clear: both;display: block;}
+.whiteBtn {
+    background: #FFFFFF;
+    border: 1px solid #CC1500;
+    padding: 10px;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+}
+
+.redBtn {
+    color: #FFFFFF;
+    padding: 10px;
+    background: #CC1500;
+    border: 1px solid #CC1500;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+}
+
+#compDetailForm {
+    padding: 10px;
+}
+
+#cancelCompDet,#submitCompDet {
+    padding: 10px 5px;
+    width: 50%;
+    text-shadow: none;
+}
+
+.ui-grid-a {
+    padding: 10px;
+}
+
+#compDetailForm textarea.ui-input-text.ui-textinput-autogrow {
+    height: 100px !important;
+}
+
+.toDoAction {
+    width: 42px;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    border: 1px solid #FFFFFF;
+    padding: 8px 10px;
+    background: #0087E2;
+    color: #FFF;
+    text-shadow: 1px 1px 1px#333333;
+    margin: 0px 0px 3px;
+}
+
+.toDoListItem.done .toDoAction {
+    width: 42px;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    border: 1px solid #3085DE;
+    padding: 8px 10px;
+    /*background: #FFFFFF;
+    color: #3085DE;*/
+    text-shadow: 1px 1px 1px#333333;
+    margin: 0px 0px 3px;
+}
+
+.toDoListItem.done a {
+    color: #FFFFFF !important;
+}
+
+.toDoDetail {
+    width: 80%;
+    float: left;
+    padding: 10px;
+}
+
+.toDoActionDiv {
+    width: 20%;
+    float: right;
+    padding: 10px;
+}
+
+.checkIn, .sync, .doneJob {
+    display: none;
+}
+
+.backBtn {
+    color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    padding: 11px 15px;
+}
+
+.noTodo {
+    font-size: 1.3em;
+    padding: 10px;
+}
+
+.pullIndicator {
+    width: 100%;
+    height: 70px;
+    padding: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: #333333;
+    text-shadow: none !important;
+    border-top: 1px solid #DADADA;
+}
+
+.pullText {
+    padding: 0px 10px;
+}
+
+.refreshSpin {
+    font-size: 1.4em;
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+
+.checkInIcon {
+    position: absolute;
+    right: 12px;
+    top: 25px;
+    color: #FFFFFF;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

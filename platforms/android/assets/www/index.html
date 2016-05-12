@@ -27,13 +27,14 @@
 		<link rel="stylesheet" type="text/css" href="js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/font-awesome-4.4.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="css/loading.css">
         <title>App Tracker</title>
     </head>
     <body>
 		<div data-role="panel" id="sideMenu" data-display="overlay" data-position-fixed="true" data-theme="a">
 			<div id="profilePic">
 				<img class="profilePicImg" src="img/icon-user-default.png" />
-				<div id="userNameDisp">Robert Maramis</div>
+				<div id="userNameDisp"></div>
 			</div>
 			<div class="sideBarMenuGroup">
 				<ul>
@@ -41,10 +42,10 @@
 						<i class="sideBarIco fa fa-th-list fa-2x"></i>
 						<span class="sideBarTitle">To do list</span>
 					</li>
-					<li id="profileSB" class="sideBarMenus">
+					<!--<li id="profileSB" class="sideBarMenus">
 						<i class="sideBarIco fa fa-user fa-2x"></i>
 						<span class="sideBarTitle">Profile</span>
-					</li>
+					</li>-->
 					<li id="aboutSB" class="sideBarMenus">
 						<i class="sideBarIco fa fa-info fa-2x"></i>
 						<span class="sideBarTitle">About this app</span>
@@ -60,7 +61,47 @@
 				</ul>
 			</div>
 		</div>
-		<div id="mainModal" class="modal fade" role="dialog"></div>
+		<div id="mainModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false"></div>
+		<div id="loadingModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+			<div class="kart-loader">
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+				<div class="sheath">
+						<div class="segment"></div>
+				</div>
+			</div>
+		</div>
 		<div id="loginPage" data-role="page">
 			<div class="loginForm">
 				<div id="logo"><img src="img/logoMitsuiWhite.png"/></div>
@@ -71,6 +112,9 @@
 					<hr/>
 					<input type="password" id="password" class="fullWinput" placeholder="Password"/>
 					
+					<!--<div class="submitBtnWrap">
+						<button id="login" class="bigBtn">Login</button>	
+					</div>-->
 					<div id="login" class="bigBtn">Login</div>
 				</form>
 			</div>
@@ -79,6 +123,11 @@
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuf2l-TTekZEbAVmlz8HMdmqHcrm85Fdc"type="text/javascript"></script>
+		<!--<script type="text/javascript" src="js/p2r.js"></script>-->
+		<script type="text/javascript" src="js/sha1.js"></script>
+		<script type="text/javascript" src="js/moment.js"></script>
+		<script type="text/javascript" src="js/properties.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
 			window.onerror = function(msg, url, linenumber) {

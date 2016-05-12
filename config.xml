@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.scratch.appTracker" version="1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>App Tracker</name>
     <description>
         App Tracker
@@ -25,6 +25,7 @@
     <preference name="FadeSplashScreen" value="false"/>
     <preference name="FadeSplashScreenDuration" value="0"/>
     <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="KeepRunning" value="true"/>
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="5000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
@@ -69,5 +70,5 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
-    <!--<gap:plugin name="org.transistorsoft.cordova.background-geolocation" />-->
+    <gap:plugin name="cordova-plugin-mauron85-background-geolocation-phonegapbuild" source="npm"/>
 </widget>
