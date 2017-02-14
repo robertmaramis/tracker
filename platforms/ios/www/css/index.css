@@ -551,7 +551,7 @@ h1 {
     padding: 10px;
 }
 
-.checkIn, .sync {
+.checkIn, .sync, .doneJob {
     display: none;
 }
 

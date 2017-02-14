@@ -102,11 +102,11 @@ var app = {
         
         backgroundGeoLocation.configure(callbackFn, failureFn, {
             desiredAccuracy: 10,
-            stationaryRadius: 10,
-            distanceFilter: 100,
+            stationaryRadius: 40,
+            distanceFilter: 300,
             debug: false,
             stopOnTerminate: false,
-            locationService: backgroundGeoLocation.service.ANDROID_FUSED_LOCATION
+            //locationService: backgroundGeoLocation.service.ANDROID_FUSED_LOCATION
         });
     }
 };
@@ -223,6 +223,16 @@ $(document).ready(function () {
         //    }
         //});
     //});
+    
+    
+    $(document).on("pageinit", "#aboutPage", function(event) {
+        $(".appVersion").html(APP_VERSION);
+    });
+    
+    $(document).on("pageshow", "#profilePage", function(event) {
+        var name = "<strong>"+auth.getUserName()+"</strong>";
+        $("#userNameDispProf").html(name);
+    });
     
     $(document).on("pageshow", "#homePage", function(event) {
         if (loginFlag) {
@@ -999,5 +1009,9 @@ function commentSubmitSuccess(res) {
     window.localStorage.removeItem(selectedId+"_cmd");
     $("#comment").val("");
     
-    showAlert(COMMENT_SUCCESS);
+    showConfirm(COMMENT_SUCCESS,goBack);
+}
+
+function goBack() {
+    parent.history.back();
 }

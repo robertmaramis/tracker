@@ -114,11 +114,13 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
-        "cordova-plugin-mauron85-background-geolocation": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
-        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-mauron85-background-geolocation": {
+            "ACCOUNT_TYPE": "$PACKAGE_NAME.account",
+            "CONTENT_AUTHORITY": "$PACKAGE_NAME",
+            "PACKAGE_NAME": "co.id.mitsuilease.tracker"
         }
     },
     "dependent_plugins": {}

@@ -3,4 +3,6 @@
     <string name="app_name">App Tracker</string>
     <string name="launcher_name">@string/app_name</string>
     <string name="activity_name">@string/launcher_name</string>
+    <string name="account_type">co.id.mitsuilease.tracker.account</string>
+    <string name="content_authority">co.id.mitsuilease.tracker</string>
 </resources>

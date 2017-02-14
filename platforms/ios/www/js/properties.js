@@ -1,15 +1,16 @@
-var PROFILE="PROD",
+var PROFILE="DEV",
 SECRET="mitsui",
 CODE="!@#$AppTracker*&^%",
 HASH = CryptoJS.SHA1(CryptoJS.SHA1(SECRET)+CODE)+"",
 AJAX_TIMEOUT_INT=60000,
-GEO_TIME_FOREGROUND=300000,
+GEO_TIME_FOREGROUND=900000,
 AJAX_TIMEOUT="Failed connect to server, please try again later",
 LOADING_MESSAGE="Please wait while your request is being process",
 USER_EMAIL="",
 USER_PASSWORD="",
 USER_NAME="",
 USER_BRANCH="";
+APP_VERSION="1.1";
 
 //ERROR MESSAGE
 var

@@ -32,9 +32,11 @@ var app = {
             if ($.mobile.activePage.attr('id') == 'loginPage' || $.mobile.activePage.attr('id') == 'homePage') {
                 e.preventDefault();
                 if (navigator.app) {
-                    navigator.app.exitApp();
+                    //navigator.app.exitApp();
+                    return false;
                 } else if (navigator.device) {
-                    navigator.device.exitApp();
+                    //navigator.device.exitApp();
+                    return false;
                 }
             }
             else {
@@ -100,11 +102,11 @@ var app = {
         
         backgroundGeoLocation.configure(callbackFn, failureFn, {
             desiredAccuracy: 10,
-            stationaryRadius: 10,
-            distanceFilter: 100,
+            stationaryRadius: 40,
+            distanceFilter: 300,
             debug: false,
             stopOnTerminate: false,
-            locationService: backgroundGeoLocation.service.ANDROID_FUSED_LOCATION
+            //locationService: backgroundGeoLocation.service.ANDROID_FUSED_LOCATION
         });
     }
 };
@@ -222,6 +224,11 @@ $(document).ready(function () {
         //});
     //});
     
+    
+    $(document).on("pageinit", "#aboutPage", function(event) {
+        $(".appVersion").html(APP_VERSION);
+    });
+    
     $(document).on("pageshow", "#homePage", function(event) {
         if (loginFlag) {
             var data = {
@@ -236,7 +243,10 @@ $(document).ready(function () {
             
             //checkToDolistStatus
             todolist.checkStatus();
-            todolist.commentCheck();    
+            setTimeout(function(){
+                todolist.jobCheck();
+                todolist.commentCheck();
+            },300);
         }
         
         $(document).on("click", "#start", function(event) {
@@ -250,7 +260,7 @@ $(document).ready(function () {
                 //backgroundGeoLocation.stop();
                 window.localStorage.setItem("JOB_STATUS","N");
                 $(".checkIn").fadeOut();
-                $(".sync").fadeOut();
+                //$(".sync").fadeOut();
                 watchPos.stop();
                 //alert(geoLocationJSON);
             } else {
@@ -370,6 +380,7 @@ $(document).ready(function () {
             var restHtml="";
             for (var i=0;i<res.todolist.length;i++){
                 var item = res.todolist[i];
+                
                 if (item.lease_no==selectedId) {
                     $(".todoTitle").html(item.cust_name);
                     $("#compAddres").html(item.address);
@@ -408,6 +419,7 @@ $(document).ready(function () {
             window.localStorage.setItem(selectedId+"_STATUS",JSON.stringify(jobStatus));
             
             showAlert(COMMAND_SAVE);
+            loginFlag=true;
         });
         $(document).on("click", "#cancelCompDet", function(event) {
             event.stopPropagation();
@@ -420,6 +432,7 @@ $(document).ready(function () {
             window.localStorage.setItem(selectedId+"_STATUS",JSON.stringify(jobStatus));
             
             showAlert(COMMAND_REMOVE);
+            loginFlag=true;
         });
     });
 });
@@ -448,6 +461,7 @@ function onError(error) {
 function checkinSuccess(res) {
     $("#"+selectedJob+"_toDoListItem").addClass("done");
     $("#"+selectedJob+"_toDoListItem .checkIn").fadeOut();
+    $("#"+selectedJob+"_checkInIcon").css("display","block");
     
     var jobStatus = JSON.parse(window.localStorage.getItem(selectedJob+"_STATUS"));
     jobStatus.status ="DONE";
@@ -638,6 +652,7 @@ function saveTodoList(res) {
     
     //checkToDolistStatus
     todolist.checkStatus();
+    todolist.jobCheck();
     todolist.commentCheck();
 }
 
@@ -838,7 +853,6 @@ var todolist = {
                     } else {
                         status.status = "DONE";
                         todolistStatus = "done";
-                        checkIn = '<div id="'+items.lease_no+'_checkInIcon" class="done toDoAction"><i class="fa fa-flag-checkered fa-2x" aria-hidden="true"></i></div>';
                     }
                     
                     if (res.todolist[i].sync=="1") {
@@ -864,7 +878,7 @@ var todolist = {
                           '      <!--<div id="id" class="checkinJob" idx="0">Check in</div>'+
                           '      <div id="0_doneIco" class="doneIco"><i class="fa fa-check fa-2x"></i></div>-->'+
                           '      <div class="toDoActionDiv">'+
-                                    checkIn + 
+                          '         <div id="'+items.lease_no+'_checkInIcon" class="doneJob toDoAction"><i class="fa fa-flag-checkered fa-2x" aria-hidden="true"></i></div>'+
                           '         <div id="'+items.lease_no+'_checkIn" class="checkIn toDoAction"><i class="fa fa-check-square-o fa-2x"></i></div>'+
                           '         <div id="'+items.lease_no+'_sync" class="sync toDoAction"><i class="fa fa-random fa-2x"></i></div>'+
                           '      </div>'+
@@ -886,7 +900,7 @@ var todolist = {
             watchPos.start();
             
             //check job status
-            this.jobCheck();
+            todolist.jobCheck();
         }
     },
     jobCheck : function(){
@@ -897,11 +911,13 @@ var todolist = {
             var jobStatus = window.localStorage.getItem(res.todolist[i].lease_no+"_STATUS");
             jobStatus = JSON.parse(jobStatus);
             if (jobStatus.status=="DONE" || res.todolist[i].check_in == "1") {
-                console.log("HERE");
                 $("#"+res.todolist[i].lease_no+"_toDoListItem").addClass("done");
+                $("#"+res.todolist[i].lease_no+"_checkInIcon").fadeIn();
                 $("#"+res.todolist[i].lease_no+"_checkIn").fadeOut();
             } else if (jobStatus.status=="NOT_STARTED") {
-                $("#"+res.todolist[i].lease_no+"_checkIn").fadeIn();
+                if (status == "Y") {
+                    $("#"+res.todolist[i].lease_no+"_checkIn").fadeIn();
+                }
             } 
             
             if (jobStatus.comment=="NOT_COMMENT") {
@@ -988,5 +1004,9 @@ function commentSubmitSuccess(res) {
     window.localStorage.removeItem(selectedId+"_cmd");
     $("#comment").val("");
     
-    showAlert(COMMENT_SUCCESS);
+    showConfirm(COMMENT_SUCCESS,goBack);
+}
+
+function goBack() {
+    parent.history.back();
 }
